@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cliente</title>
+</head>
+<body>
+  <h1>Cliente Padrao</h1>
+
+  <input id="key" placeholder="Chave">
+  <input id="value" placeholder="Valor">
+
+  <br><br>
+
+  <button onclick="sendAction('create')">Criar</button>
+  <button onclick="sendAction('update')">Atualizar</button>
+  <button onclick="sendAction('delete')">Deletar</button>
+
+  <h3>Resposta:</h3>
+  <pre id="response"></pre>
+
+  <script>
+    async function sendAction(action) {
+      const key = document.getElementById("key").value;
+      const value = document.getElementById("value").value;
+
+      const response = await fetch("http://127.0.0.1:5000/document", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          action: action,
+          key: key,
+          value: value
+        })
+      });
+
+      const data = await response.json();
+      document.getElementById("response").textContent =
+        JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
