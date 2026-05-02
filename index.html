@@ -24,13 +24,15 @@
       const key = document.getElementById("key").value;
       const value = document.getElementById("value").value;
 
+      // Ali nos Headers ele define que o conteúdo é JSON
       const response = await fetch("http://127.0.0.1:5000/document", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
+        // Modelagem de como ficará após os requests (ficará em JSON obvio)
         body: JSON.stringify({
-          action: action,
+          action: acao,
           key: key,
           value: value
         })
