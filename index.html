@@ -25,6 +25,7 @@
       const value = document.getElementById("value").value;
 
       // Ali nos Headers ele define que o conteúdo é JSON
+      // fetch envia uma requisição HTTP para o servidor e recebe resposta
       const response = await fetch("http://127.0.0.1:5000/document", {
         method: "POST",
         headers: {
